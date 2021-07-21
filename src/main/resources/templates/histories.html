@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Test App</title>
+</head>
+<body>
+<p class="h1 text-center my-5">История операций с ценными бумагами</p>
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<a href="/" class="btn btn-secondary btn-sm my-3">Назад на главную страницу</a>
+</div>
+
+<table class="table table-bordered">
+    <tr class="table-dark">
+        <th>SECID</th>
+        <th>REGNUMBER</th>
+        <th>NAME</th>
+        <th>EMITENT TITLE</th>
+        <th>TRADE DATE</th>
+        <th>NUMTRADES</th>
+        <th>OPEN</th>
+        <th>CLOSE</th>
+    </tr>
+    <tr th:each="history : ${histories}">
+        <td th:text="${history.secId}"></td>
+        <td th:text="${history.security.regNumber}"></td>
+        <td th:text="${history.security.name}"></td>
+        <td th:text="${history.security.emitentTitle}"></td>
+        <td th:text="${history.tradeDate}"></td>
+        <td th:text="${history.numTrades}"></td>
+        <td th:text="${history.open}"></td>
+        <td th:text="${history.close}"></td>
+<!--        <td><i class="bi bi-trash"><a href="/delete/${history.secId}"></a></i></td>-->
+<!--        <td>-->
+<!--            <a th:href="|@{/delete/${history.secId}}|" class="btn btn-danger">Delete</a>-->
+<!--        </td>-->
+        <td>
+            <form action="#" th:action="@{'/delete/{secId}'(secId=${history.secId})}" th:method="delete" >
+                <input type="hidden" name="_method" value="delete" />
+                <button type="submit" id="submitButton"> </button>
+            </form>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>

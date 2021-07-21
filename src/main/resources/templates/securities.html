@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Test App</title>
+</head>
+<body>
+<p class="h1 text-center my-5">Информация по ценным бумагам</p>
+
+
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="/" class="btn btn-secondary btn-sm my-3">Назад на главную страницу</a>
+</div>
+
+<table class="table table-bordered">
+    <tr class="table-dark">
+        <th>ID</th>
+        <th>SECID</th>
+        <th>REGNUMBER</th>
+        <th>NAME</th>
+        <th>EMITENT TITLE</th>
+    </tr>
+    <tr th:each="security : ${securities}">
+        <td th:text="${security.id}"></td>
+        <td th:text="${security.secId}"></td>
+        <td th:text="${security.regNumber}"></td>
+        <td th:text="${security.name}"></td>
+        <td th:text="${security.emitentTitle}"></td>
+
+    </tr>
+</table>
+</body>
+</html>
